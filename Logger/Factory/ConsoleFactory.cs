@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Logger.Product.Console;
 
 namespace Logger.Factory
 {
@@ -11,7 +12,8 @@ namespace Logger.Factory
     {
         public override AbstractLogger CreateLogger()
         {
-            return new ConsoleLogger();
+            IConsole console = new ConsoleOutput();
+            return new ConsoleLogger(console);
         }
     }
 }

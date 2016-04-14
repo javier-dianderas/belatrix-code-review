@@ -1,34 +1,38 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace Logger.Product
+namespace Logger.Product.Console
 {
     class ConsoleLogger : AbstractLogger
     {
+        private readonly IConsole _console;
+
+        public ConsoleLogger(IConsole console)
+        {
+            _console = console;
+        }
+
         public override void Log(string message, int type)
         {
-            Console.WriteLine(DateTime.Now.ToShortDateString() + message);
+            _console.WriteLine(DateTime.Now.ToShortDateString() + message);
         }
 
         public override void LogMessage(string message)
         {
-            Console.ForegroundColor = ConsoleColor.White;
+            _console.ForegroundColor = ConsoleColor.White;
             var t = 1;
             Log(message, t);
         }
 
         public override void LogWarning(string message)
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            _console.ForegroundColor = ConsoleColor.Yellow;
             var t = 3;
             Log(message, t);
         }
 
         public override void LogError(string message)
         {
-            Console.ForegroundColor = ConsoleColor.Red;
+            _console.ForegroundColor = ConsoleColor.Red;
             var t = 2;
             Log(message, t);
         }
