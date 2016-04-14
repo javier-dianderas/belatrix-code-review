@@ -47,12 +47,16 @@
     <Compile Include="Factory\FileFactory.cs" />
     <Compile Include="Product\Console\ConsoleLogger.cs" />
     <Compile Include="Product\Console\ConsoleOutput.cs" />
-    <Compile Include="Product\Database\DatabaseLogger.cs" />
+    <Compile Include="Product\Database\DatabaseLogger.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Product\Database\IRepository.cs" />
     <Compile Include="Product\Database\RepositoryDatabase.cs" />
-    <Compile Include="Product\File\FileLogger.cs" />
     <Compile Include="Product\AbstractLogger.cs" />
     <Compile Include="Product\Console\IConsole.cs" />
+    <Compile Include="Product\File\FileLogger.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Product\File\FileWrapper.cs" />
     <Compile Include="Product\File\IFileWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
