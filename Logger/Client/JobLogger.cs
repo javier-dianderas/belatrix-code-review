@@ -12,6 +12,8 @@ namespace Logger.Client
     {
         private readonly AbstractLogger _logger;
 
+        public AbstractLogger Logger { get; set; }
+
         public JobLogger(FactoryLogger factoryLogger)
         {
             _logger = factoryLogger.CreateLogger();
@@ -21,12 +23,18 @@ namespace Logger.Client
             message = message.Trim();
             if (string.IsNullOrEmpty(message))
             {
-                throw new Exception("Message is empty");
+                //TODO: include in the document
+                throw new ArgumentException("Message is empty");
             }
             if (!isMessage && !warning && !error)
             {
-                throw new Exception("Error or Warning or Message must be specified");
+                throw new ArgumentException("Error or Warning or Message must be specified");
             }
+            if ((isMessage && (warning || error)) || (warning && (isMessage || error)) || (error && (isMessage || warning)))
+            {
+                throw new ArgumentException("More than one type of message are not permitted");
+            }
+
             if (isMessage)
                 _logger.LogMessage(message);
             if (warning)

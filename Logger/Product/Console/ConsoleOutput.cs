@@ -13,6 +13,10 @@ namespace Logger.Product.Console
             {
                 System.Console.ForegroundColor = value;
             }
+            get
+            {
+                return System.Console.ForegroundColor;
+            }
         }
 
         public void WriteLine(string message)

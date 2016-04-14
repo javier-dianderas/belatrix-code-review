@@ -8,7 +8,7 @@ using Logger.Product.Console;
 
 namespace Logger.Factory
 {
-    class ConsoleFactory : FactoryLogger
+    public class ConsoleFactory : FactoryLogger
     {
         public override AbstractLogger CreateLogger()
         {

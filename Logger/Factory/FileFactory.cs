@@ -8,7 +8,7 @@ using Logger.Product.File;
 
 namespace Logger.Factory
 {
-    class FileFactory : FactoryLogger
+    public class FileFactory : FactoryLogger
     {
         public override AbstractLogger CreateLogger()
         {

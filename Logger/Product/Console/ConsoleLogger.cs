@@ -2,9 +2,17 @@
 
 namespace Logger.Product.Console
 {
-    class ConsoleLogger : AbstractLogger
+    public class ConsoleLogger : AbstractLogger
     {
         private readonly IConsole _console;
+
+        public IConsole Console
+        {
+            get
+            {
+                return _console;
+            }
+        }       
 
         public ConsoleLogger(IConsole console)
         {

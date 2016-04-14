@@ -9,11 +9,12 @@ using Logger.Product.Database;
 
 namespace Logger.Factory
 {
-    class DatabaseFactory : FactoryLogger
+    public class DatabaseFactory : FactoryLogger
     {
         public override AbstractLogger CreateLogger()
         {
-            if (ConfigurationManager.AppSettings["ConnectionString"] == null)
+            //TODO: Include in the document
+            if (ConfigurationManager.ConnectionStrings["ConnectionStringDatabase"] == null)
             {
                 throw new Exception("ConnectionString key does not exist in the configuration file");
             }
