@@ -10,13 +10,13 @@ namespace Logger.Client
 {
     public class JobLogger
     {
-        private static bool _logToFile;
-        private static bool _logToConsole;
-        private static bool _logMessage;
-        private static bool _logWarning;
-        private static bool _logError;
-        private static bool _logToDatabase;
-        private bool _initialized;
+        //private static bool _logToFile;
+        //private static bool _logToConsole;
+        //private static bool _logMessage;
+        //private static bool _logWarning;
+        //private static bool _logError;
+        //private static bool _logToDatabase;
+        //private bool _initialized;
 
         private AbstractLogger _logger;
 
