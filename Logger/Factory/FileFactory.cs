@@ -16,10 +16,15 @@ namespace Logger.Factory
             {
                 throw new Exception("LogFileDirectory key does not exist in the configuration file");
             }
+            var logDirectory = ConfigurationManager.AppSettings["LogFileDirectory"];
+            if (!System.IO.Directory.Exists(logDirectory))
+            {
+                throw new Exception("LogFileDirectory path does not exist in the file system");
+            }
 
             DateTime dateTime = DateTime.Now;
-            string name = ConfigurationManager.AppSettings["LogFileDirectory"] + "LogFile" +
-                          dateTime.ToShortDateString() + ".txt";
+            string name = ConfigurationManager.AppSettings["LogFileDirectory"] + "LogFile." +
+                          dateTime.ToString("dd.MM.yyyy") + ".txt";
             IFileWrapper file = new FileWrapper();
             return new FileLogger(name, file, dateTime);
         }

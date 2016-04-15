@@ -22,6 +22,6 @@ namespace Logger.Product.Console
         public void WriteLine(string message)
         {
             System.Console.WriteLine(message);
-        }
+        }        
     }
 }

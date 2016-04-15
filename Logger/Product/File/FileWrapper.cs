@@ -6,7 +6,8 @@ using System.Text;
 namespace Logger.Product.File
 {
     class FileWrapper : IFileWrapper
-    {
+    {        
+
         public bool Exists(string fileName)
         {
             return System.IO.File.Exists(fileName);
@@ -19,6 +20,8 @@ namespace Logger.Product.File
 
         public void WriteAllText(string fileName, string message)
         {
+            //if (!Exists(fileName))
+            //    using (var fs = System.IO.File.Create(fileName)) { }
             System.IO.File.WriteAllText(fileName, message);
         }
     }

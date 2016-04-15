@@ -12,7 +12,13 @@ namespace Logger.Client
     {
         private readonly AbstractLogger _logger;
 
-        public AbstractLogger Logger { get; set; }
+        public AbstractLogger Logger
+        {
+            get
+            {
+                return _logger;
+            }
+        }
 
         public JobLogger(FactoryLogger factoryLogger)
         {

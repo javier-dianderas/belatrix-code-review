@@ -53,6 +53,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Client\JobLoggerDatabaseTest.cs" />
+    <Compile Include="Client\JobLoggerFileTest.cs" />
     <Compile Include="Client\JobLoggerConsoleTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

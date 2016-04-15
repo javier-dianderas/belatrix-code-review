@@ -2,11 +2,16 @@
 
 namespace Logger.Product.File
 {
-    class FileLogger : AbstractLogger
+    public class FileLogger : AbstractLogger
     {
         private readonly string _fileName;
         private readonly IFileWrapper _file;
         private readonly DateTime _dateTime;
+        private int _type;
+        public int Type 
+        {
+            get { return _type; }
+        }
 
         public FileLogger(string fileName, IFileWrapper file, DateTime dateTime)
         {
@@ -14,33 +19,33 @@ namespace Logger.Product.File
             _file = file;
             _dateTime = dateTime;
         }
-        public override void Log(string message, int type)
+        public override void Log(string message)
         {
             string l = string.Empty;
-            if (!_file.Exists(_fileName))
-            {
+            if (_file.Exists(_fileName))
+            {                
                 l = _file.ReadAllText(_fileName);
             }            
-            l = l + DateTime.Now.ToShortDateString() + message + "\n";
+            l = l + "|" + DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss:") + message;
             _file.WriteAllText(_fileName, l);            
         }
 
         public override void LogMessage(string message)
         {
-            var t = 1;
-            Log(message, t);
+            _type = 1;
+            Log(message);
         }
 
         public override void LogWarning(string message)
         {
-            var t = 3;
-            Log(message, t);
+            _type = 3;
+            Log(message);
         }
 
         public override void LogError(string message)
         {
-            var t = 2;
-            Log(message, t);
+            _type = 2;
+            Log(message);
         }
     }
 }

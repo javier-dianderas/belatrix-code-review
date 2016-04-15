@@ -1,33 +1,40 @@
 ﻿namespace Logger.Product.Database
 {
-    class DatabaseLogger : AbstractLogger
+    public class DatabaseLogger : AbstractLogger
     {
         private readonly IRepository _repository;
+        private int _type;
+
+        public int Type 
+        { 
+            get { return _type; } 
+        }
+
         public DatabaseLogger(IRepository repository)
         {
             _repository = repository;
         }
 
-        public override void Log(string message, int type)
+        public override void Log(string message)
         {
-            _repository.InsertLog(message, type);
+            _repository.InsertLog(message, _type);
         }
         public override void LogMessage(string message)
         {
-            var t = 1;
-            Log(message, t);
+            _type = 1;
+            Log(message);
         }
 
         public override void LogWarning(string message)
         {
-            var t = 3;
-            Log(message, t);
+            _type = 3;
+            Log(message);
         }
 
         public override void LogError(string message)
         {
-            var t = 2;
-            Log(message, t);
+            _type = 2;
+            Log(message);
         }
     }
 }

@@ -3,11 +3,12 @@ using Logger.Client;
 using Logger.Factory;
 using Logger.Product.Console;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Logger.Product.Database;
 
 namespace Logger.Tests.Client
 {
     [TestClass]
-    public class JobLoggerConsoleTest
+    public class JobLoggerDatabaseTest
     {
         private FactoryLogger _factory;
         private JobLogger _jobLogger;
@@ -16,7 +17,7 @@ namespace Logger.Tests.Client
         [TestInitialize]
         public void InitializeTest()
         {
-            _factory = new ConsoleFactory();
+            _factory = new DatabaseFactory();
             _jobLogger = null;
         }
 
@@ -61,8 +62,7 @@ namespace Logger.Tests.Client
             //Act
             _jobLogger.LogMessage("message", true, false, false);
             //Assert
-            var logger = (ConsoleLogger)_jobLogger.Logger;
-            Assert.AreEqual(logger.Console.ForegroundColor, ConsoleColor.White);
+            var logger = (DatabaseLogger)_jobLogger.Logger;            
             Assert.AreEqual(logger.Type, 1);
         }
 
@@ -74,8 +74,7 @@ namespace Logger.Tests.Client
             //Act
             _jobLogger.LogMessage("message", false, true, false);
             //Assert
-            var logger = (ConsoleLogger)_jobLogger.Logger;
-            Assert.AreEqual(logger.Console.ForegroundColor, ConsoleColor.Yellow);
+            var logger = (DatabaseLogger)_jobLogger.Logger;            
             Assert.AreEqual(logger.Type, 3);
         }
 
@@ -87,8 +86,7 @@ namespace Logger.Tests.Client
             //Act
             _jobLogger.LogMessage("message", false, false, true);
             //Assert
-            var logger = (ConsoleLogger)_jobLogger.Logger;
-            Assert.AreEqual(logger.Console.ForegroundColor, ConsoleColor.Red);
+            var logger = (DatabaseLogger)_jobLogger.Logger;            
             Assert.AreEqual(logger.Type, 2);
         }
     }

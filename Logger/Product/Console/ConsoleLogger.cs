@@ -5,6 +5,7 @@ namespace Logger.Product.Console
     public class ConsoleLogger : AbstractLogger
     {
         private readonly IConsole _console;
+        private int _type;
 
         public IConsole Console
         {
@@ -12,14 +13,18 @@ namespace Logger.Product.Console
             {
                 return _console;
             }
-        }       
+        }
+        public int Type
+        {
+            get { return _type; }
+        }
 
         public ConsoleLogger(IConsole console)
         {
             _console = console;
         }
 
-        public override void Log(string message, int type)
+        public override void Log(string message)
         {
             _console.WriteLine(DateTime.Now.ToShortDateString() + message);
         }
@@ -27,22 +32,22 @@ namespace Logger.Product.Console
         public override void LogMessage(string message)
         {
             _console.ForegroundColor = ConsoleColor.White;
-            var t = 1;
-            Log(message, t);
+            _type = 1;
+            Log(message);
         }
 
         public override void LogWarning(string message)
         {
             _console.ForegroundColor = ConsoleColor.Yellow;
-            var t = 3;
-            Log(message, t);
+            _type = 3;
+            Log(message);
         }
 
         public override void LogError(string message)
         {
             _console.ForegroundColor = ConsoleColor.Red;
-            var t = 2;
-            Log(message, t);
+            _type = 2;
+            Log(message);
         }
     }
 }
